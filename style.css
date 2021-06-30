@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Slab', serif;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body{
+    background-image: url('./assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+p, h1, span, h3{
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+.header{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+}
+
+.score {
+    width: 100%;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 25%;
+}
+.name {
+    margin-right: 30px;
+}
+.name h3, .name p {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.name h3 {
+    font-size: 1.9rem;
+}
+.name p {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.strip {
+    background-color: #fff;
+    width: 3rem;
+    height: .8rem;
+}
+.container-game {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+}
+
+.game {
+    justify-content: space-evenly;
+    transition: 3 all;
+}
+.game button {
+    height:120px;
+    width: 150px;
+    border: 1px solid black;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.game button>img {
+    height:100%;
+    width: 100%;
+}
+
+.gamehover {
+    border: 3px solid yellow;
+}
+
+.start button {
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+.start button:hover{
+    font-size: 4rem;
+    border: 1px sold yellow;
+}
+
+.result {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    top: 75%;
+    text-align: center;
+    color: #fff;
+    display: none;
+}
+
+.result h3 {
+    font-size: 35px;
+    word-spacing: .6rem;
+    margin-bottom: 3rem;
+}
+
+.btn {
+    width: 150px;
+    height: 50px;
+    background-color: red;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius:20px;
+    border: none;
+    outline: none;
+    box-shadow:inset 0 0 0 0 yellow;
+    transition: ease-out 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    box-shadow:inset 150px 0 0 0 yellow;
+    color: black;
+}
+
+.btn:active {
+    margin-top: 0px;
+}
+
+.animated {
+    transform: scale(2);
+    border: 2px solid blue;
+}

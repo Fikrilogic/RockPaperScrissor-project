@@ -5,65 +5,155 @@ const compChoice = [
 ]
 let playerScore = 0
 let computerScore = 0
+let count = 3;
+const start = document.querySelector('.start');
+const game = document.querySelector('.game');
+const score = document.querySelector('.score');
+const container = document.querySelector('.container-game');
+const counter = document.querySelector('.start button');
+const compScore = document.querySelector('#computer p');
+const playScore = document.querySelector('#player p');
+const resultContainer = document.querySelector('.result');
+const endresult = document.querySelector('.end-result');
+const gameResult = document.querySelector('.game-result');
+const buttonGame = document.querySelectorAll('.game button');
 
-const computerPlay = compChoice[Math.floor(Math.random() * compChoice.length)]
 
+function playGame () {
+    startGame();
+    let playerChoice;
+    buttonGame.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const choice = document.querySelectorAll('.game-icon');
+            choice.forEach(button => {
+                if(button.classList.contains('rock')) {
+                    playerChoice = "ROCK"
+                } else if(button.classList.contains('paper')) {
+                    playerChoice = 'PAPER';
+                } else {
+                    playerChoice = 'SCISSOR';
+                }
+            })
+            playRound(computerChoice(compChoice), playerChoice);
+            resultGame()
+            endGame();
+        });
+    });
+}
+
+buttonGame.forEach(button => button.addEventListener('mouseover', (e) => {
+    e.target.classList.add('gamehover');
+    setTimeout(() => {
+        e.target.classList.remove('gamehover');
+    }, 500)
+}))
+
+const computerChoice = (computer) => {
+    const comp = computer[Math.floor(Math.random() * computer.length)];
+    return  comp;
+}
+
+const displayGame = () => {
+    setTimeout(()=> {
+        game.classList.add('visible');
+        game.classList.remove('hidden');
+        score.style['display'] = 'flex';
+        resultContainer.style.display = 'initial';
+    }, 4000);
+}
 
 function playRound(compPlay, player) {
     switch (player) {
         case 'PAPER':
             if(compPlay === 'PAPER') {
-                console.log('DRAW!, Paper meet Paper')
+                gameResult.textContent = 'DRAW!, Paper meet Paper';
             } else if (compPlay === 'ROCK') {
-                console.log('Player WIN!, Paper beats Rock')
+                gameResult.textContent = 'Player WIN!, Paper beats Rock';
                 playerScore+=1
             } else if(compPlay === 'SCISSOR') {
-                console.log('Computer WIN!, Scissor beat Paper');
+                gameResult.textContent = 'Computer WIN!, Scissor beat Paper';
                 computerScore+=1
             }
             break;
         case 'ROCK': 
             if(compPlay === 'PAPER') {
-                console.log('Computer WIN!, Paper beats Rock')
+                gameResult.textContent = 'Computer WIN!, Paper beats Rock';
                 computerScore+=1
             } else if (compPlay === 'ROCK') {
-                console.log('DRAW!, Rock meet Rock')
+                gameResult.textContent = 'DRAW!, Rock meet Rock'
             } else if(compPlay === 'SCISSOR') {
-                console.log('Player WIN!, Rock beat Scissor');
+                gameResult.textContent = 'Player WIN!, Rock beat Scissor'
                 playerScore+=1
             }
             break;
         case 'SCISSOR': 
             if(compPlay === 'PAPER') {
-                console.log('Player WIN!, Scissor beats Paper')
+                gameResult.textContent = 'Player WIN!, Scissor beats Paper'
                 playerScore+=1
             } else if (compPlay === 'ROCK') {
-                console.log('Computer WIN!, Rock beat Scissor')
+                gameResult.textContent = 'Computer WIN!, Rock beat Scissor'
                 computerScore+=1
             } else if(compPlay === 'SCISSOR') {
-                console.log('DRAW!, Scissor meet Scissor');
+                gameResult.textContent = 'DRAW!, Scissor meet Scissor'
             }
             break;
     }
 }
 
-const gameStart = function() {
-    for(let i = 0; i < 5; i++) {
-        const playerChoice = prompt("Player set a choice! : 'Rock', 'Paper', Scissor ?").toUpperCase();
-        console.log(`Round ${i+1}`);
-        playRound(computerPlay, playerChoice);
-        if(i >= 4) {
-            const score = playerScore - computerScore
-            if(score < 0) {
-                console.log('Computer Win a game')
-            } else if(score > 0){
-                console.log('Player win a game')
-            } else {
-                console.log('Match Draw!!')
-            }
-        }
-    }
-    playerScore,computerScore = 0;
-
+const startGame = () => {
+    start.addEventListener('click', function(e) {
+        setInterval(timer, 1000) 
+        displayGame(); 
+    });
 }
-gameStart();
+
+const timer = () => {
+    if(count === 0){
+        endTimer();
+        clearTimeout(timer);
+    } else {
+        counter.innerHTML = count;
+        count --
+    }
+}
+
+const endTimer = function() {
+    start.style.display = 'none';
+}
+
+
+const endGame = () => {
+    if(playerScore === 5 && playerScore > computerScore) {
+        reset();
+        endresult.innerHTML = 'You WIN'
+        console.log('player win');
+    } else if (computerScore === 5 && computerScore > playerScore) {
+        reset();
+        endresult.innerHTML = 'Computer WIN';
+        console.log('computer win');
+    } else if (computerScore === 5 && playerScore === 5) {
+        reset();
+        endresult.innerHTML = 'DRAW'
+        console.log(draw);
+    }
+}
+
+const resultGame = () => {
+    compScore.textContent = computerScore.toString();
+    playScore.textContent = playerScore.toString();
+}
+
+const reset = () => {
+    const btnReset = document.createElement('button');
+    btnReset.textContent = 'Reset Game';
+    btnReset.classList.add('btn');
+    btnReset.addEventListener('click', () => {
+        window.location.reload();
+    })
+
+    game.classList.remove('visible');
+    game.classList.add('hidden');
+    container.appendChild(btnReset);
+}
+
+playGame();

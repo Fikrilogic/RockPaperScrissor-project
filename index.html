@@ -4,21 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        h1{
-            text-transform: uppercase;
-            color: white;
-            margin-top: 20%;
-        }
-        body{
-            background-color: brown;
-        }
-    </style>
+    <title>Rock Paper Scissor Game</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <h1>Check the console please!!</p>
+    <div class="header">
+        <h1>Rock Paper Scissor Game</h1>
+    </div>
+
+    <div class="score">
+        <div id="computer" class="name">
+            <h3>Computer</h3>
+            <p>0</p>
+        </div>
+        <div class="name strip">
+        </div>
+        <div id="player" class="name">
+            <h3>You</h3>
+            <p>0</p>
+        </div>
+    </div>
+
+    <div class="container-game">
+        <div class="game hidden">
+            <button type="button" >
+                <img src="./assets/rock.png" alt="rock" class="game-icon rock">
+            </button>
+            <button>
+                <img src="./assets/paper.jpg" alt="paper" class="game-icon paper">
+            </button>
+            <button>
+                <img src="./assets/scissor.png" alt="scissor" class="game-icon scissor">
+            </button>
+        </div>
+        <div class="start">
+            <button>START GAME</button>
+        </div>
+    </div>
+
+    <div class="result">
+        <h3 class="game-result">
+        </h3>
+        <h3 class="end-result"></h3>
+    </div>
 
     <script src="script.js"></script>
 </body>
